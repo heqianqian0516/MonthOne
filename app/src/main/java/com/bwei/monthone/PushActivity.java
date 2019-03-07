@@ -1,0 +1,25 @@
+package com.bwei.monthone;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
+public class PushActivity extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        try {
+            Bundle bundle=intent.getExtras();
+            if ("cn.jpush.android.intent.NOTIFICATION_OPENED".equals(intent.getAction())){
+
+                Intent intent1=new Intent(context,ShowActivity.class);
+                // intent1.putExtras(bundle);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent1);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
